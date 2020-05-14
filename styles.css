@@ -1,0 +1,232 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #faebd7;
+    display: grid;
+    place-items: center;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#container {
+    width: 50%;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 25px 0 200px;
+}
+
+#container.list-added {
+    height: 100%;
+}
+
+h3.track {
+    width: 100%;
+    height: 30px;
+    background: #ffffffa3;
+    text-align: left;
+    padding: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 5px;
+}
+
+h3.track.current {
+    background: #ffffffe1;
+}
+
+#player {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(207, 157, 91);
+    z-index: 2;
+    box-shadow: 0px -2px 5px 0px #ffffff5c;
+    transform: translateY(100%);
+    transition: transform .5s;
+}
+
+#open-close-player {
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    left: 0;
+    top: -30px;
+    background: rgb(179, 121, 46);
+    border: none;
+    color: #fff;
+}
+
+.invisible {
+    position: absolute;
+    visibility: hidden;
+    height: 0;
+    width: 0;
+}
+
+input#open:checked~#player {
+    transform: translateY(0);
+}
+
+#player label#open-close-player:before {
+    content: "\2770";
+    display: inline-block;
+    writing-mode: vertical-rl;
+    font-size: 30px;
+    margin-top: 9px;
+}
+
+input#open:checked+#player label#open-close-player:before {
+    content: "\2771";
+}
+
+#player .media-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding-bottom: 10px;
+}
+
+button.skip {
+    background: transparent;
+    border: solid 1px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 10px;
+    position: relative;
+    margin: 10px;
+}
+
+button.skip:before {
+    width: 11px;
+    height: 25px;
+    position: absolute;
+    top: -16px;
+    background: rgb(207, 157, 91);
+    padding-left: 1px;
+    box-sizing: border-box;
+    font-size: 21px;
+    font-weight: 900;
+}
+
+button#back:before {
+    content: '\025C2';
+    left: 0px;
+}
+
+button#forward:before {
+    content: '\025C2';
+    left: 17px;
+    transform: scaleX(-1);
+}
+
+.skip-track {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 40px;
+    margin-top: -10px;
+}
+
+.media-wrapper audio {
+    height: 40px;
+    margin: 10px 0 20px;
+}
+
+.media-wrapper audio, .media-wrapper video {
+    display: none;
+}
+
+.media-wrapper audio::-webkit-media-controls-current-time-display, audio::-webkit-media-controls-time-remaining-display {
+    position: absolute;
+    bottom: 0px;
+}
+
+.media-wrapper audio::-webkit-media-controls-current-time-display {
+    left: calc(50% - 40px);
+}
+
+.media-wrapper audio::-webkit-media-controls-time-remaining-display {
+    left: calc(50% - 5px);
+}
+
+#player .media-wrapper #speed-wrapper {
+    margin: 0 10px;
+}
+
+#speed-wrapper input[type="range" i] {
+    -webkit-appearance: none;
+    background: transparent;
+}
+
+#speed-wrapper input[type="range" i]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+    margin-top: -4px;
+    box-shadow: 1px 1px 1px #000000, 0px -1px 1px #0d0d0d;
+}
+
+#speed-wrapper input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    box-shadow: inset 1px 1px 1px #000000a3, 0px 0px 1px #0d0d0d;
+    background: grey;
+    border-radius: 10px;
+    border: 0.2px inset #010101;
+}
+
+#player.video-playing video {
+    min-width: 90%;
+    max-width: 100%;
+    -webkit-order: -1;
+    -ms-flex-order: -1; 
+    order: -1;
+    z-index: 1;
+    max-height: 65vh;
+}
+
+#player.video-playing .skip-track {
+    flex-basis: 25%;
+}
+
+#player.video-playing .media-wrapper #speed-wrapper {
+    margin: 20px 10px 0;
+    flex-basis: 40%;
+}
+
+@media screen and (max-width: 720px) {
+    .list-item h3, #player h3 {
+        font-size: 16px;
+    }
+
+    audio {
+        min-width: 90%;
+        -webkit-order: -1;
+        -ms-flex-order: -1; 
+        order: -1;
+    }
+
+    #player .skip-track {
+        flex-basis: 25%;
+    }
+
+    #player .media-wrapper #speed-wrapper {
+        margin: 20px 10px 0;
+        flex-basis: 40%;
+    }
+}

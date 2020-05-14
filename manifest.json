@@ -1,0 +1,20 @@
+{
+    "short_name": "Player",
+    "name": "Audio Player",
+    "icons": [
+      {
+        "src": "logo.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "logo.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "/",
+    "background_color": "#faebd7",
+    "display": "standalone",
+    "theme_color": "#faebd7"
+  }

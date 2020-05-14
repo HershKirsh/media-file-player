@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="logo.png" type="image/gif" sizes="16x16">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Local Media File Player</title>
+</head>
+
+<body>
+    <div id="container">
+        <h1>Media File Player</h1>
+        <label for="file">Choose media files</label>
+        <input id="file" type="file" multiple onchange="selectMedia(this.files)">
+        <input class="invisible" id="open" type="checkbox">
+        <div id="player" class="video-playing" tabindex="0">
+            <label for="open" id="open-close-player"></label>
+            <h3></h3>
+            <div class="media-wrapper">
+                <button class="skip-track" id="prev" onclick="mediaPlayer.prev()" title="play previous track">«</button>
+                <button class="skip" id="back" onclick="mediaPlayer.skipBack()" title="rewind 30 seconds">30</button>
+                <audio autoplay src="" controls controlslist="nodownload" onended="mediaPlayer.next()">
+                    Your browser does not support the audio element.
+                </audio>
+                <video autoplay src="" controls controlslist="nodownload" onended="mediaPlayer.next()">
+                    Your browser does not support the video element.
+                </video>
+                <button class="skip" id="forward" onclick="mediaPlayer.skipForward()"
+                    title="forward 30 seconds">30</button>
+                <button class="skip-track" id="next" onclick="mediaPlayer.next()" title="play next track">»</button>
+                <div id="speed-wrapper">
+                    <label for="speed-range">Playback speed</label><br>
+                    <input type="range" id="speed-range" max="2.5" min="0.5" step="0.25" value="1"
+                        oninput="mediaPlayer.adjustSpeed(this, undefined)">
+                    <br>x<output for="speed-range">1</output>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./main.js"></script>
+</body>
+
+</html>
